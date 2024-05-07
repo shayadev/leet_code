@@ -14,8 +14,9 @@ Output: false
 
 class Solution(object):
     def containsDuplicate(self, nums):
-        for i in range(len(nums)):
-            for j in range(i + 1, len(nums)):
-                if nums[i] == nums[j]:
-                    return True
-            break
+        num_list = set()
+        for n in nums:
+            if n in num_list:
+                return True
+            num_list.add(n)
+        return False

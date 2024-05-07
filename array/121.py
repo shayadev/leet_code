@@ -16,10 +16,15 @@ Note that buying on day 2 and selling on day 1 is not allowed because you must b
 
 class Solution(object):
     def maxProfit(self, prices):
-        max_l = 0
-        for i in range(len(prices)):
-            for j in range(i + 1, len(prices)):
-                profit = prices[j] - prices[i]
-                if profit > max_l:
-                    max_l = profit
-        return max_l
+        min_price = float('inf')
+        max_profit = 0
+
+        for price in prices:
+            if price < min_price:
+                min_price = price
+            else:
+                current_profit = price - min_price
+                if current_profit > max_profit:
+                    max_profit = current_profit
+
+        return max_profit

@@ -18,18 +18,21 @@ Output: 4
 
 class Solution(object):
     def search(self, nums, target):
-        result = nums[0]
-        left, right = 0, len(nums) - 1
-        while left <= right:
-            if nums[left] < nums[right]:
-                result = min((result, nums[l]))
-                break
+        l,r=0,len(nums)-1
 
-            m = (left + right) // 2
-            result = min(result, nums[left])
-            if nums[m] >= nums[left]:
-                l = m + 1
+        while l<= r:
+            m=(l+r)//2
+            if target == nums[m]:
+                return m
+            if nums[l] <= nums[m]:
+                if target > nums[m] or target < nums[l]:
+                    l=m+1
+                else:
+                    r=m-1
             else:
-                right = m - 1
-
-        return result
+                if target < nums[m] or target > nums[r]:
+                    r=m-1
+                else:
+                    l=m+1
+        else:
+            return -1

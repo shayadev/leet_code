@@ -14,13 +14,17 @@ range since it does not appear in nums.
 
 class Solution:
     def missingNumber(self, nums):
-        result = len(nums)
-        for i in range(len(nums)):
-            result += (i - nums[i])
+        res = 0
 
-        return result
+        for n in nums:
+            res ^= n
+
+        for i in range(len(nums) + 1):
+            res ^= i
+
+        return res
 
 
 if __name__ == '__main__':
-    nums = [9,6,4,2,3,5,7,0,1]
+    nums = [9, 6, 4, 2, 3, 5, 7, 0, 1]
     print(Solution().missingNumber(nums))
